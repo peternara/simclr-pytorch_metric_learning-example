@@ -22,6 +22,7 @@ def train(args, model, device, train_loader, optimizer, loss_func, epoch):
     for batch_idx, (xi, xj, _) in enumerate(train_loader):
         xi, xj  = xi.to(device), xj.to(device)
         optimizer.zero_grad()
+        # modified_cifar.py 에서, 같은 이미지에 대해 두개의 random augmentaion 이미지 : xi, xj 그리고 _로 표시된것은 실제 이미지
         hi = model(xi)
         hj = model(xj)
         embeddings = torch.cat((hi, hj))
